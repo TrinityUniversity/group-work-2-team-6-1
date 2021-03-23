@@ -1,0 +1,11 @@
+@(count: Int)
+
+@main("Play with Scala.js") {
+
+  <h2>Counter</h2>
+  <p>Counter: <span id="count">@count</span></p>
+  <button onclick="increaseCount()">Press Here For a Suprise</button>
+
+  <input type="hidden" id="countRoute" value="@routes.Counter.add">
+  <script src="@routes.Assets.versioned("javascript/countscript.js")"></script>
+}
