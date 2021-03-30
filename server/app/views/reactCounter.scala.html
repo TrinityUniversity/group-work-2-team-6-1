@@ -1,0 +1,8 @@
+@()(implicit request: RequestHeader, flash: Flash)
+
+@main("React Counter"){
+  <input type="hidden" id="getCountRoute" value="@routes.ReactCounter.getCount()">
+  <input type="hidden" id="addCountRoute" value="@routes.ReactCounter.add()">
+  <div id="react-root"></div>
+  <script src="@routes.Assets.versioned("javascript/reactCounter.js")"></script>
+}

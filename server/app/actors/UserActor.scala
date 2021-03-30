@@ -9,11 +9,10 @@ import akka.actor.ActorRef
 
 class UserActor extends Actor {
 
-    def receive{
-
-        case RecieveCount => print("UserActor.RecieveCount(): " +count)
-        case m => print("Unhandleded message in UserActor " +m)
-
+    import UserActor._
+    def receive = {
+        case RecieveCount(count) => println("UserActor.RecieveCount(): " +count)
+        case m => println("Unhandleded message in UserActor " +m)
     }
 
 }

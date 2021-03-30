@@ -1,4 +1,4 @@
-package controllers
+package contro
 
 import javax.inject._
 import play.api.mvc._
@@ -11,20 +11,20 @@ import akka.actor.ActorSystem
 import akka.stream.Materializer
 import actors.CountActor
 import akka.actor.Props
-import actors.ChatManager
+import akka.actor.ActorRef
 
 @Singleton
 class WebSocketCounter @Inject() (cc: ControllerComponents)(implicit system: ActorSystem, mat: Materializer) extends AbstractController(cc) {
   
-  val userManager = system.actorOf(Props[UserManager], "User Manager")
+  //val userManager = system.actorOf(Props[UserManager], "User Manager")
   
-  def counter = Action { 
+  /* def counter = Action { 
       Ok(views.html.counter(actorRef ! SendCount(This)))
-  }
+  } */
 
-  def getSocket = WebSocket.accept[???] { request =>
+  /* def getSocket = WebSocket.accept[???] { request =>
     ActorFlow.actorRef{ out => 
         
     }
-  }
+  } */
 } 

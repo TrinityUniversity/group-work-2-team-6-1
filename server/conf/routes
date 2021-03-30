@@ -8,9 +8,13 @@ GET        /counter                      controllers.Counter.counter
 GET        /add                          controllers.Counter.add
 
 # WebSocket counter
-GET        /WebSocketCounter             controllers.WebSocketCounter.counter
-GET        /GetSocket                    controllers.WebSocketCounter.getSocket
+#GET        /WebSocketCounter             controllers.WebSocketCounter.counter
+#GET        /GetSocket                    controllers.WebSocketCounter.getSocket
 
+# React counter
+GET        /ReactCounter                 controllers.ReactCounter.index
+GET        /ReactAdd                     controllers.ReactCounter.add
+GET        /ReactGetCount                controllers.ReactCounter.getCount
 # Prefix must match `play.assets.urlPrefix`
 GET        /assets/*file                 controllers.Assets.at(file)
 GET        /versionedAssets/*file        controllers.Assets.versioned(path="/public", file: Asset)

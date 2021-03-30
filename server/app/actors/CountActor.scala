@@ -1,20 +1,21 @@
 package actors
 
 import akka.actor._
-import model.CountModel
+import models.CountModel
 import actors.CountActor._
 
 class CountActor() extends Actor {
 
     def receive = {
-        case SendCount =>  other ! RecieveCount(CountModel.getCount())
-        case RecieveCount => count
+        case SendCount(other) =>  other ! RecieveCount(CountModel.getCount())
+        case RecieveCount(count) => count
         case IncrementCount => CountModel.increaseCount()
-        case e => out.println("Unhandled message in CountActor: " + e)
+        case e => println("Unhandled message in CountActor: " + e)
     }
 }
 
-object CountActor() {
+object CountActor {
     case class SendCount(other: ActorRef)
+    case class RecieveCount(count: Int)
     case class IncrementCount()
 }
