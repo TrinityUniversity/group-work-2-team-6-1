@@ -13,9 +13,12 @@ object ScalaJSExample {
     // dom.document.getElementById("scalajsShoutOut").textContent = SharedMessages.itWorks
     println("Call the react stuff.")
     ReactDOM.render(
-      h1("Hello, world!"),
-      dom.document.getElementById("root")
+      MessageBoard(),
+      dom.document.getElementById("react-root")
+    //   h1("Hello, world!"),
+    //   dom.document.getElementById("root")
     )
 
-  }
+    
+  } 
 }
