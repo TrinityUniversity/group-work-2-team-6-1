@@ -40,21 +40,22 @@ import org.scalajs.dom.html
     state.oldMessage
   )
 
-  def addMessage(): Unit = {
-    FetchJson.fetchPost(addRoute, csrfToken, state.newMessage, (bool: Boolean) => {
-      if(bool) {
-        setState(state.copy(newMessage = "", oldMessage = ""))
-        loadMessage()
-      } else {
-        setState(state.copy(oldMessage = "Failed to add."))
-      }
-    }, e => {
-      println("Fetch error: " + e)
-    })
-  }
-
     def loadMessage(): Unit = {
-        FetchJson.fetchGet(messageRoute, (message: Message) => {
+      val headers = new Headers()
+      headers.set("Content-Type", "application/json")
+      headers.set("Csrf-Token", csrfToken)
+      Fetch.fetch(url, RequestInit(method = HttpMethod.POST,
+        headers = headers, body = Json.toJson(data).toString))
+      .flatMap(res => res.text())
+      .map { data => 
+        Json.fromJson[B](Json.parse(data)) match {
+          case JsSuccess(b, path) =>
+            success(b)
+          case e @ JsError(_) =>
+            error(e)
+        }
+    }
+        Fetch.fetch(messageRoute, (message: Message) => {
         setState(state.copy(newMessage = message))
         }, e => {
         println("Fetch error: " + e)
